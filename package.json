@@ -1,6 +1,6 @@
 {
-  "name": "node-lwip",
-  "version": "0.1.2",
+  "name": "prebuild-lwip",
+  "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
     "async": "~0.9.0",
@@ -15,7 +15,7 @@
     "module_path": "./build/{configuration}/",
     "remote_path": "./{node_abi}-v{version}-{platform}-{arch}/",
     "package_name": "{module_name}.node",
-    "host": "7xov2q.dl1.z0.glb.clouddn.com"
+    "host": "7xojg5.com1.z0.glb.clouddn.com"
   },
   "scripts": {
     "install": "node prebuild",

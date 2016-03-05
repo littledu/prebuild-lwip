@@ -7,19 +7,50 @@ var config = require('rc')('qiniu');
 var http = require('http');
 var fs = require('fs');
 var exec = require('child_process').exec;
+var async = require('async');
 
-var binaries = ["lwip_decoder", "lwip_encoder", "lwip_image"];
-var opts = [];
-for (var i = 0; i < binaries.length; i++) {
-    //得到目录路径
-    opts.push(evaluate(pkg, binaries[i]));
-}
+var abi_crosswalk;
 
-if (process.env.TMTBUILD) {
-    publishNodeFile();
-} else {
-    downloadNodeFile();
-}
+async.series([
+    function(cb){
+        http.get('http://7xojg5.com1.z0.glb.clouddn.com/abi_crosswalk.json', function(res) {
+            if (res.statusCode != 200 ) {
+                abi_crosswalk = require('./abi_crosswalk.json');
+                cb();
+            }
+
+            res.setEncoding('utf8');
+            var body = '';
+
+            res.on('data', function (chunk) {
+                body += chunk;
+            });
+            res.on('end',function(err) {
+                if (err) throw err;
+
+                abi_crosswalk = JSON.parse(body);
+
+                cb();
+            });
+        });
+    },
+    function(cb){
+        var binaries = ["lwip_decoder", "lwip_encoder", "lwip_image"];
+        var opts = [];
+        for (var i = 0; i < binaries.length; i++) {
+            //得到目录路径
+            opts.push(evaluate(pkg, binaries[i]));
+        }
+
+        if (process.env.TMTBUILD) {
+            publishNodeFile();
+        } else {
+            downloadNodeFile();
+        }
+
+        cb();
+    }
+]);
 
 function publishNodeFile() {
 
@@ -112,18 +143,6 @@ function rebuild(command, callback) {
     ls.on('exit', function (code) {
         console.log('child process exited with code ' + code);
     });
-}
-
-
-var abi_crosswalk;
-
-// This is used for unit testing to provide a fake
-// ABI crosswalk that emulates one that is not updated
-// for the current version
-if (process.env.NODE_PRE_GYP_ABI_CROSSWALK) {
-    abi_crosswalk = require(process.env.NODE_PRE_GYP_ABI_CROSSWALK);
-} else {
-    abi_crosswalk = require('./abi_crosswalk.json');
 }
 
 function get_node_abi(runtime, versions) {

@@ -14,16 +14,76 @@ environment:
   qiniu_SECRET_KEY:
     secure: XRWyQSCo7yWHH7LN5AUlFd3UYl/T6ZAc7WiK4NJJGAKocvmEm7ait8jm+y51CZ6c
   matrix:
-    - nodejs_version: 4.2.3
+    - nodejs_version: 0.1.101
       platform: x86
       msvs_toolset: 12
-    - nodejs_version: 4.2.3
+    - nodejs_version: 0.1.101
       platform: x64
       msvs_toolset: 12
-    - nodejs_version: 5.1.1
+    - nodejs_version: 0.9.1
       platform: x86
       msvs_toolset: 12
-    - nodejs_version: 5.1.1
+    - nodejs_version: 0.9.1
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 0.9.9
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 0.9.9
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 0.11.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 0.11.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 0.11.8
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 0.11.8
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 0.11.11
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 0.11.11
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 1.0.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 1.0.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 1.1.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 1.1.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 2.0.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 2.0.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 3.0.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 3.0.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 4.0.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 4.0.0
+      platform: x64
+      msvs_toolset: 12
+    - nodejs_version: 5.0.0
+      platform: x86
+      msvs_toolset: 12
+    - nodejs_version: 5.0.0
       platform: x64
       msvs_toolset: 12
 
