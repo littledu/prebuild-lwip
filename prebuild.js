@@ -70,6 +70,7 @@ function publishNodeFile() {
 function downloadNodeFile() {
     //创建目录
     mkdirs(path.join(__dirname, "build", "Release"), 0755, function (e) {
+
         //下载
         downFile(opts[0].module, opts[0].hosted_tarball, function (err) {
             if (err) {
@@ -163,6 +164,7 @@ function get_node_abi(runtime, versions) {
 }
 
 function get_runtime_abi(runtime, target_version) {
+
     if (!runtime) {
         throw new Error("get_runtime_abi requires valid runtime arg");
     }
@@ -321,6 +323,7 @@ function evaluate(package_json, module_name, options) {
         module_main: package_json.main,
         toolset: options.toolset || '' // address https://github.com/mapbox/node-pre-gyp/issues/119
     };
+
     opts.host = fix_slashes(eval_template(package_json.binary.host, opts));
     opts.module_path = eval_template(package_json.binary.module_path, opts);
     // now we resolve the module_path to ensure it is absolute so that binding.gyp variables work predictably
